@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nalin Trading - Professional Logistics & Business Solutions</title>
+    <!-- <link rel="icon" type="image/png" href="images/logo1.png"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        
+        /* White Centered Navigation */
+        .navbar {
+            position: fixed !important;
+            top: 20px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            z-index: 9999 !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            height: 60px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 0 20px;
+            max-width: 800px;
+            width: 90%;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98) !important;
+            backdrop-filter: blur(32px) saturate(200%);
+            -webkit-backdrop-filter: blur(32px) saturate(200%);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Navbar Container */
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Logo Design */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 6px 12px;
+            border-radius: 25px;
+        }
+        
+        .logo-container:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .logo-image {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            object-fit: contain;
+            background: rgba(59, 130, 246, 0.1);
+            padding: 2px;
+        }
+        
+        .logo-text {
+            font-size: 16px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e293b 0%, #3b82f6 60%, #1d4ed8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Enhanced hover effect */
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: #1e40af;
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+        }
+        
+        /* Enhanced Active State - More Prominent Blue */
+        .nav-btn.nav-active {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%) !important;
+            color: white !important;
+            font-weight: 700 !important;
+            box-shadow: 
+                0 4px 16px rgba(59, 130, 246, 0.4),
+                0 0 0 2px rgba(59, 130, 246, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+            transform: translateY(-2px) scale(1.05) !important;
+            position: relative !important;
+            z-index: 10 !important;
+            border: none !important;
+            outline: none !important;
+        }
+        
+        .nav-btn.nav-active:hover {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%) !important;
+            transform: translateY(-3px) scale(1.07) !important;
+            box-shadow: 
+                0 6px 20px rgba(59, 130, 246, 0.5),
+                0 0 0 3px rgba(59, 130, 246, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+        }
+        
+        /* Override any conflicting styles */
+        .nav-btn.nav-active,
+        .nav-btn.nav-active:focus,
+        .nav-btn.nav-active:active,
+        .nav-btn.nav-active:visited {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%) !important;
+            color: white !important;
+            font-weight: 700 !important;
+            outline: none !important;
+            border: none !important;
+        }
+        
+        /* Enhanced Language Toggle */
+        .lang-container {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            background: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: #1e40af;
+            transform: scale(1.05);
+        }
+        
+        .lang-btn.active {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            box-shadow: 
+                0 2px 8px rgba(59, 130, 246, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(248, 250, 252, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1e40af;
+            padding: 8px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .navbar {
+                top: 15px !important;
+                width: 95%;
+                height: 50px;
+                padding: 0 15px;
+            }
+            
+            .logo-text {
+                font-size: 14px;
+            }
+            
+            .logo-image {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 20px;
+                border-radius: 20px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+                border: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.show {
+                display: flex;
+                animation: mobileSlideIn 0.3s ease;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+                padding: 12px 20px;
+                margin: 2px 0;
+                color: #1e40af;
+                border-radius: 12px;
+            }
+            
+            .nav-btn:hover {
+                background: rgba(59, 130, 246, 0.1);
+            }
+            
+            .nav-btn.nav-active {
+                background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+                color: white !important;
+                font-weight: 700;
+                box-shadow: 
+                    0 4px 16px rgba(59, 130, 246, 0.4),
+                    0 0 0 2px rgba(59, 130, 246, 0.2);
+                transform: scale(1.02);
+            }
+            
+            .nav-btn.nav-active:hover {
+                background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+                transform: scale(1.04);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .lang-container {
+                margin-top: 15px;
+                justify-content: center;
+            }
+            
+            .lang-btn {
+                color: #1e40af;
+            }
+        }
+        
+        @keyframes mobileSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            transition: width 0.1s ease;
+            border-radius: 1px;
+        }
+        
+        /* Hero Section Styles */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.7) 50%, rgba(15, 23, 42, 0.8) 100%), 
+                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&crop=center');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+        }
+        
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%,
+                transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.1) 0%,
+                transparent 50%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+        }
+        
+        .hero-title-white {
+            color: white !important;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-subtitle-white {
+            color: rgba(255, 255, 255, 0.95) !important;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .stats-glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .stat-card-glass {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number-white {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .stat-label-white {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        /* Hero Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-primary-hero {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-primary-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
+        }
+        
+        .btn-secondary-hero {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary-hero:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                background-attachment: scroll !important;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Transparent Centered Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="scroll-progress" id="scrollProgress"></div>
+        <div class="navbar-container">
+            <!-- FIXED: Logo click handler -->
+            <div class="logo-container" onclick="showSection('home'); event.stopPropagation();">
+                <img src="images/logo1.png" alt="Nalin Trading" class="logo-image">
+                <div class="logo-text">Nalin Trading</div>
+            </div>
+            
+            <div class="nav-links" id="navLinks">
+                <!-- FIXED: Ensure all buttons have proper onclick attributes -->
+                <button onclick="showSection('home')" class="nav-btn nav-active" id="home-nav-btn">
+                    <span class="en">Home</span><span class="jp hidden">ホーム</span>
+                </button>
+                <button onclick="showSection('about')" class="nav-btn" id="about-nav-btn">
+                    <span class="en">About</span><span class="jp hidden">会社概要</span>
+                </button>
+                <button onclick="showSection('services')" class="nav-btn" id="services-nav-btn">
+                    <span class="en">Services</span><span class="jp hidden">サービス</span>
+                </button>
+                <button onclick="showSection('gallery')" class="nav-btn" id="gallery-nav-btn">
+                    <span class="en">Portfolio</span><span class="jp hidden">実績</span>
+                </button>
+                <button onclick="showSection('contact')" class="nav-btn" id="contact-nav-btn">
+                    <span class="en">Contact</span><span class="jp hidden">お問い合わせ</span>
+                </button>
+                
+                <div class="lang-container">
+                    <button onclick="toggleLanguage('en')" class="lang-btn active">EN</button>
+                    <button onclick="toggleLanguage('jp')" class="lang-btn">日本語</button>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!---------------------------------------------------- Home Section ----------------------------------------------------->
+    <section id="home" class="section active">
+        <!-- Professional Hero with Business Background -->
+        <div class="hero-section" style="padding-top: 0; min-height: 100vh;">
+            <div class="hero-pattern"></div>
+            <div class="container mx-auto px-6 relative z-10" style="padding-top: 120px;">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="hero-content">
+                        <h1 class="text-5xl lg:text-6xl font-bold hero-title-white mb-6 leading-tight">
+                            <span class="en">Professional</span>
+                            <span class="jp hidden">プロフェッショナル</span>
+                            <br>
+                            <span class="text-blue-300">Trading Solutions</span>
+                        </h1>
+                        <p class="text-xl hero-subtitle-white mb-8 leading-relaxed">
+                            <span class="en">Comprehensive logistics, recycling, vehicle services, and international trade solutions connecting Sri Lanka, Japan, and beyond.</span>
+                            <span class="jp hidden">スリランカ、日本、そしてその先を結ぶ総合的な物流、リサイクル、車両サービス、国際貿易ソリューション。</span>
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="showSection('services')" class="btn-primary-hero">
+                                <span class="en">Explore Services</span>
+                                <span class="jp hidden">サービスを見る</span>
+                            </button>
+                            <button onclick="showSection('contact')" class="btn-secondary-hero">
+                                <span class="en">Get Quote</span>
+                                <span class="jp hidden">見積もり依頼</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="stats-glass-card p-8">
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="stat-card-glass">
+                                    <div class="stat-number-white">15+</div>
+                                    <div class="stat-label-white">
+                                        <span class="en">Years Experience</span>
+                                        <span class="jp hidden">年の経験</span>
+                                    </div>
+                                </div>
+                                <div class="stat-card-glass">
+                                    <div class="stat-number-white">1K+</div>
+                                    <div class="stat-label-white">
+                                        <span class="en">Projects Completed</span>
+                                        <span class="jp hidden">完了プロジェクト</span>
+                                    </div>
+                                </div>
+                                <div class="stat-card-glass">
+                                    <div class="stat-number-white">50+</div>
+                                    <div class="stat-label-white">
+                                        <span class="en">Global Partners</span>
+                                        <span class="jp hidden">グローバルパートナー</span>
+                                    </div>
+                                </div>
+                                <div class="stat-card-glass">
+                                    <div class="stat-number-white">24/7</div>
+                                    <div class="stat-label-white">
+                                        <span class="en">Support Available</span>
+                                        <span class="jp hidden">サポート対応</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Elements -->
+                        <div class="absolute -top-4 -right-4 w-16 h-16 bg-blue-400/20 rounded-full animate-pulse"></div>
+                        <div class="absolute -bottom-4 -left-4 w-12 h-12 bg-white/20 rounded-full animate-bounce"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                        <span class="en">Trusted by Leading Companies</span>
+                        <span class="jp hidden">主要企業に信頼されています</span>
+                    </h2>
+                </div>
+                <div class="flex justify-center items-center gap-12 opacity-60">
+                    <div class="text-lg font-semibold text-blue-600">PARTNER A</div>
+                    <div class="text-lg font-semibold text-blue-600">PARTNER B</div>
+                    <div class="text-lg font-semibold text-blue-600">PARTNER C</div>
+                    <div class="text-lg font-semibold text-blue-600">PARTNER D</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Features Section -->
+        <div class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                        <span class="en">What Sets Us Apart</span>
+                        <span class="jp hidden">私たちの特徴</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        <span class="en">Comprehensive solutions that connect markets, support sustainability, and drive business growth</span>
+                        <span class="jp hidden">市場を結び、持続可能性をサポートし、ビジネス成長を促進する包括的ソリューション</span>
+                    </p>
+                </div>
+                
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <!-- Feature 1 -->
+                    <div class="text-center animate-in">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-handshake text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                            <span class="en">Trusted Partnerships</span>
+                            <span class="jp hidden">信頼のパートナーシップ</span>
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            <span class="en">Building long-term relationships with clients across multiple industries, ensuring reliable service and mutual growth opportunities.</span>
+                            <span class="jp hidden">複数の業界のクライアントとの長期的な関係を構築し、信頼できるサービスと相互成長の機会を確保しています。</span>
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="text-center animate-in">
+                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-leaf text-3xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                            <span class="en">Sustainable Solutions</span>
+                            <span class="jp hidden">持続可能なソリューション</span>
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            <span class="en">Committed to environmental responsibility through our recycling programs, eco-friendly logistics, and sustainable business practices.</span>
+                            <span class="jp hidden">リサイクルプログラム、環境に優しい物流、持続可能なビジネス慣行を通じて環境責任にコミットしています。</span>
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="text-center animate-in">
+                        <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-cogs text-3xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                            <span class="en">Advanced Technology</span>
+                            <span class="jp hidden">先進技術</span>
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            <span class="en">Leveraging cutting-edge technology for tracking, quality control, and efficient operations across all our service lines.</span>
+                            <span class="jp hidden">すべてのサービスラインで追跡、品質管理、効率的な運用のための最先端技術を活用しています。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Overview -->
+        <div class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="animate-in">
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                            <span class="en">Comprehensive Business Solutions</span>
+                            <span class="jp hidden">包括的ビジネスソリューション</span>
+                        </h2>
+                        <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                            <span class="en">From international logistics and vehicle services to recycling solutions and cross-border trade facilitation, we provide end-to-end support for your business needs.</span>
+                            <span class="jp hidden">国際物流や車両サービスからリサイクルソリューション、国境を越えた貿易促進まで、お客様のビジネスニーズに対してエンドツーエンドのサポートを提供します。</span>
+                        </p>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-blue-600 mr-3"></i>
+                                <span class="text-gray-700">
+                                    <span class="en">International Logistics & Shipping</span>
+                                    <span class="jp hidden">国際物流・輸送</span>
+                                </span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-blue-600 mr-3"></i>
+                                <span class="text-gray-700">
+                                    <span class="en">Vehicle Sales, Repair & Export</span>
+                                    <span class="jp hidden">車両販売・修理・輸出</span>
+                                </span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-blue-600 mr-3"></i>
+                                <span class="text-gray-700">
+                                    <span class="en">Recycling & Environmental Services</span>
+                                    <span class="jp hidden">リサイクル・環境サービス</span>
+                                </span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-blue-600 mr-3"></i>
+                                <span class="text-gray-700">
+                                    <span class="en">Cross-Border Trade Support</span>
+                                    <span class="jp hidden">国境を越えた貿易サポート</span>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <button onclick="showSection('services')" class="btn-primary">
+                            <span class="en">Explore All Services</span>
+                            <span class="jp hidden">全サービスを見る</span>
+                        </button>
+                    </div>
+                    
+                    <div class="animate-in">
+                        <div class="grid grid-cols-2 gap-4">
+                            <img src="./images/full-shot-men-wearing-helmets-vests.jpg" alt="Logistics" class="rounded-lg shadow-lg">
+                            <img src="./images/husband-car-mechanic-woman-customer-make-agreement-repair-car.jpg" alt="Shipping" class="rounded-lg shadow-lg">
+                            <img src="./images/people-working-together-warehouse.jpg" alt="Port Operations" class="rounded-lg shadow-lg">
+                            <img src="./images/employees-working-warehouse.jpg" alt="Technology" class="rounded-lg shadow-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Global Reach Section -->
+        <div class="py-20 bg-gradient-to-r from-blue-900 to-indigo-900">
+          <div class="container mx-auto px-6">
+            <div class="text-center text-white mb-12">
+              <h2 class="text-4xl font-bold mb-4 animate-in">
+                <span class="en text-white">Global Reach, Local Expertise</span>
+                <span class="jp hidden">グローバルリーチ、ローカル専門知識</span>
+              </h2>
+              <p class="max-w-2xl mx-auto opacity-80 animate-in">
+                <span class="en">Connecting businesses across continents with deep understanding of local markets and regulations.</span>
+                <span class="jp hidden">地域市場と規制の深い理解で大陸を越えてビジネスを結びます。</span>
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <!-- Sri Lanka Card -->
+              <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-indigo-400 animate-in">
+                <div class="text-5xl mb-4">🇱🇰</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Sri Lanka</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  Strategic hub for South Asian operations with comprehensive logistics and export services.
+                </p>
+              </div>
+              <!-- Japan Card -->
+              <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-indigo-400 animate-in">
+                <div class="text-5xl mb-4">🇯🇵</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Japan</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  Technology & innovation center specializing in vehicle services and advanced recycling solutions.
+                </p>
+              </div>
+              <!-- Pacific Region Card -->
+              <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-indigo-400 animate-in">
+                <div class="text-5xl mb-4">🌏</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Pacific Region</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  Expanding network across Fiji and beyond, delivering reliable trade and logistics support.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonials Section -->
+        <div class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                        <span class="en">What Our Clients Say</span>
+                        <span class="jp hidden">お客様の声</span>
+                    </h2>
+                </div>
+                
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg animate-in">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6 italic">
+                            <span class="en">"Exceptional service and reliability. Nalin Trading has been our trusted partner for vehicle exports to Sri Lanka for over 3 years."</span>
+                            <span class="jp hidden">「優れたサービスと信頼性。ナリン・トレーディングは3年以上にわたってスリランカへの車両輸出の信頼できるパートナーです。」</span>
+                        </p>
+                        <div>
+                            <div class="font-semibold text-gray-900">
+                                <span class="en">Hiroshi Tanaka</span>
+                                <span class="jp hidden">田中博</span>
+                            </div>
+                            <div class="text-sm text-gray-500">
+                                <span class="en">CEO, Auto Export Japan</span>
+                                <span class="jp hidden">CEO、オートエクスポートジャパン</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg animate-in">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6 italic">
+                            <span class="en">"Their recycling services helped us achieve our sustainability goals while maintaining cost efficiency. Highly recommended!"</span>
+                            <span class="jp hidden">「彼らのリサイクルサービスは、コスト効率を維持しながら持続可能性目標の達成を支援してくれました。強くお勧めします！」</span>
+                        </p>
+                        <div>
+                            <div class="font-semibold text-gray-900">
+                                <span class="en">Sarah Fernando</span>
+                                <span class="jp hidden">サラ・フェルナンド</span>
+                            </div>
+                            <div class="text-sm text-gray-500">
+                                <span class="en">Operations Manager, Green Tech Lanka</span>
+                                <span class="jp hidden">オペレーションマネージャー、グリーンテックランカ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg animate-in">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6 italic">
+                            <span class="en">"Professional logistics support that made our international expansion seamless. Excellent communication throughout."</span>
+                            <span class="jp hidden">「国際展開をシームレスにしてくれたプロフェッショナルな物流サポート。終始優れたコミュニケーションでした。」</span>
+                        </p>
+                        <div>
+                            <div class="font-semibold text-gray-900">
+                                <span class="en">Michael Chen</span>
+                                <span class="jp hidden">マイケル・チェン</span>
+                            </div>
+                            <div class="text-sm text-gray-500">
+                                <span class="en">Director, Pacific Trade Solutions</span>
+                                <span class="jp hidden">ディレクター、パシフィック・トレード・ソリューションズ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-6 text-white animate-in">
+                    <span class="en">Ready to Start Your Journey?</span>
+                    <span class="jp hidden">あなたの旅を始める準備はできていますか？</span>
+                </h2>
+                <p class="text-xl mb-8 text-gray-300 max-w-2xl mx-auto animate-in">
+                    <span class="en">Contact us today to discuss how our comprehensive solutions can support your business growth and sustainability goals.</span>
+                    <span class="jp hidden">包括的なソリューションがお客様のビジネス成長と持続可能性目標をどのようにサポートできるかについて、今すぐお問い合わせください。</span>
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center animate-in">
+                    <button onclick="showSection('contact')" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all transform hover:scale-105">
+                        <span class="en">Get Free Consultation</span>
+                        <span class="jp hidden">無料相談を受ける</span>
+                    </button>
+                    <button onclick="showSection('services')" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all">
+                        <span class="en">View Our Services</span>
+                        <span class="jp hidden">サービスを見る</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--------------------------------------------- ------- About Section --------------------------------------------------->
+    <section id="about" class="section">
+        <!-- Hero Section for About -->
+        <div class="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden" style="padding-top: 120px;">
+            <div class="absolute inset-0 bg-black opacity-20"></div>
+            <div class="absolute inset-0">
+                <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);"></div>
+            </div>
+            
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center max-w-4xl mx-auto">
+
+                    <h1 class="text-5xl lg:text-6xl font-bold mb-8 leading-tight hero-title-white">
+                        <span class="en">Building Bridges Across</span>
+                        <br>
+                        <span class="en text-blue-300">Continents</span>
+                        <span class="jp hidden">大陸を越えた架け橋を築く</span>
+                    </h1>
+                    
+                    <p class="text-xl lg:text-2xl mb-12 leading-relaxed opacity-90">
+                        <span class="en">Founded with a vision to connect markets and create sustainable business solutions, Nalin Trading has grown into a trusted partner for logistics, recycling, and international trade across Sri Lanka, Japan, and the Pacific region.</span>
+                        <span class="jp hidden">市場を結び、持続可能なビジネスソリューションを創造するビジョンで設立されたナリン・トレーディングは、スリランカ、日本、太平洋地域の物流、リサイクル、国際貿易における信頼できるパートナーに成長しました。</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Company Overview -->
+        <div class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="animate-in">
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                            <span class="en">Excellence Through Innovation</span>
+                            <span class="jp hidden">イノベーションを通じた卓越性</span>
+                        </h2>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            <span class="en">Established in 2009, Nalin Trading began as a small logistics company with a big vision. Today, we've evolved into a comprehensive business solutions provider, serving clients across multiple industries with our integrated approach to recycling, vehicle services, and international trade.</span>
+                            <span class="jp hidden">2009年に設立されたナリン・トレーディングは、大きなビジョンを持つ小さな物流会社としてスタートしました。今日、私たちはリサイクル、車両サービス、国際貿易への統合的アプローチで複数の業界のクライアントにサービスを提供する包括的なビジネスソリューションプロバイダーに進化しました。</span>
+                        </p>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            <span class="en">Our commitment to sustainability, technical excellence, and customer satisfaction has made us a preferred partner for businesses looking to expand their operations across the Asia-Pacific region.</span>
+                            <span class="jp hidden">持続可能性、技術的卓越性、顧客満足への私たちのコミットメントにより、アジア太平洋地域での事業拡大を目指す企業にとって優先的なパートナーとなっています。</span>
+                        </p>
+                        
+                        <!-- Company Stats -->
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="text-center p-4 bg-blue-50 rounded-lg">
+                                <div class="text-3xl font-bold text-blue-600 mb-2">15+</div>
+                                <div class="text-sm text-gray-600">
+                                    <span class="en">Years of Excellence</span>
+                                    <span class="jp hidden">年の卓越性</span>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 bg-blue-50 rounded-lg">
+                                <div class="text-3xl font-bold text-blue-600 mb-2">50+</div>
+                                <div class="text-sm text-gray-600">
+                                    <span class="en">Global Partners</span>
+                                    <span class="jp hidden">グローバルパートナー</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="animate-in">
+                        <img src="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?w=600&h=400&fit=crop&crop=face" alt="Company Building" class="rounded-2xl shadow-xl w-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leadership Team -->
+        <div class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                        <span class="en">Meet Our Leaders</span>
+                        <span class="jp hidden">リーダーをご紹介</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        <span class="en">Our experienced leadership team brings together decades of industry expertise, driving innovation and growth across all our business divisions.</span>
+                        <span class="jp hidden">経験豊富なリーダーシップチームが数十年の業界専門知識を結集し、すべての事業部門でイノベーションと成長を推進しています。</span>
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <!-- CEO -->
+                    <div class="bg-white rounded-3xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-300 group">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Nalin Chathuranga - CEO" class="w-full h-80 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            <div class="absolute bottom-4 left-6 text-white">
+                                <div class="px-3 py-1 bg-blue-600 rounded-full text-xs font-semibold mb-2">
+                                    <span class="en">Chief Executive Officer</span>
+                                    <span class="jp hidden">最高経営責任者</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Nalin Chathuranga</h3>
+                            <p class="text-blue-600 font-semibold mb-4">
+                                <span class="en">CEO & Founder</span>
+                                <span class="jp hidden">CEO・創設者</span>
+                            </p>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                <span class="en">With over 15 years of experience in international logistics and sustainable business practices, Nalin founded the company with a vision to create eco-friendly solutions that connect global markets. His expertise in cross-cultural business development has been instrumental in establishing our presence across Asia-Pacific.</span>
+                                <span class="jp hidden">国際物流と持続可能なビジネス慣行において15年以上の経験を持つナリンは、グローバル市場を結ぶ環境に優しいソリューションを創造するビジョンで会社を設立しました。異文化間ビジネス開発での彼の専門知識は、アジア太平洋地域での私たちの存在感確立に重要な役割を果たしています。</span>
+                            </p>
+                            <!-- Social Links -->
+                            <div class="flex space-x-3">
+                                <a href="#" class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Co-Founder 1 -->
+                    <div class="bg-white rounded-3xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-300 group">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face" alt="Rajesh Kumar - Co-Founder" class="w-full h-80 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            <div class="absolute bottom-4 left-6 text-white">
+                                <div class="px-3 py-1 bg-blue-600 rounded-full text-xs font-semibold mb-2">
+                                    <span class="en">Co-Founder & CTO</span>
+                                    <span class="jp hidden">共同創設者・CTO</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Rajesh Kumar</h3>
+                            <p class="text-blue-600 font-semibold mb-4">
+                                <span class="en">Co-Founder & CTO</span>
+                                <span class="jp hidden">共同創設者・最高技術責任者</span>
+                            </p>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                <span class="en">A technology visionary with 12 years in automotive engineering and recycling technologies. Rajesh leads our technical innovation initiatives and oversees the integration of cutting-edge solutions in our vehicle services and recycling operations. His expertise ensures we stay ahead of industry technological advances.</span>
+                                <span class="jp hidden">自動車工学とリサイクル技術で12年の経験を持つ技術ビジョナリー。ラジェッシュは技術革新イニシアチブを主導し、車両サービスとリサイクル事業における最先端ソリューションの統合を監督しています。彼の専門知識により、業界の技術進歩の先頭に立ち続けています。</span>
+                            </p>
+                            <!-- Social Links -->
+                            <div class="flex space-x-3">
+                                <a href="#" class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Co-Founder 2 -->
+                    <div class="bg-white rounded-3xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-300 group">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616c9c20762?w=400&h=400&fit=crop&crop=face" alt="Priya Fernandez - Co-Founder" class="w-full h-80 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            <div class="absolute bottom-4 left-6 text-white">
+                                <div class="px-3 py-1 bg-blue-600 rounded-full text-xs font-semibold mb-2">
+                                    <span class="en">Co-Founder & COO</span>
+                                    <span class="jp hidden">共同創設者・COO</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Priya Fernandez</h3>
+                            <p class="text-blue-600 font-semibold mb-4">
+                                <span class="en">Co-Founder & COO</span>
+                                <span class="jp hidden">共同創設者・最高執行責任者</span>
+                            </p>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                <span class="en">An operational excellence expert with 14 years in supply chain management and international trade. Priya manages our day-to-day operations and strategic partnerships across multiple regions. Her leadership in sustainable business practices has positioned us as an industry leader in environmental responsibility.</span>
+                                <span class="jp hidden">サプライチェーン管理と国際貿易で14年の経験を持つ運用卓越性の専門家。プリヤは複数地域での日々の運営と戦略的パートナーシップを管理しています。持続可能なビジネス慣行における彼女のリーダーシップにより、私たちは環境責任における業界リーダーとしての地位を確立しています。</span>
+                            </p>
+                            <!-- Social Links -->
+                            <div class="flex space-x-3">
+                                <a href="#" class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mission & Vision -->
+        <div class="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white mb-0">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16">
+                    <!-- Mission -->
+                    <div class="text-center lg:text-left">
+                        <div class="inline-block p-3 bg-white/10 rounded-full mb-6">
+                            <i class="fas fa-compass text-4xl text-blue-300"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-6">
+                            <span class="en text-white">Our Mission</span>
+                            <span class="jp hidden text-white">私たちの使命</span>
+                        </h3>
+                        <p class="text-xl leading-relaxed opacity-90">
+                            <span class="en">To provide comprehensive, sustainable, and innovative business solutions that connect markets across Sri Lanka, Japan, and the Pacific region while maintaining the highest standards of environmental responsibility and customer service excellence.</span>
+                            <span class="jp hidden">最高水準の環境責任と顧客サービス卓越性を維持しながら、スリランカ、日本、太平洋地域の市場を結ぶ包括的で持続可能かつ革新的なビジネスソリューションを提供すること。</span>
+                        </p>
+                    </div>
+
+                    <!-- Vision -->
+                    <div class="text-center lg:text-left">
+                        <div class="inline-block p-3 bg-white/10 rounded-full mb-6">
+                            <i class="fas fa-eye text-4xl text-blue-300"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-6">
+                            <span class="en text-white">Our Vision</span>
+                            <span class="jp hidden text-white">私たちのビジョン</span>
+                        </h3>
+                        <p class="text-xl leading-relaxed opacity-90">
+                            <span class="en">To become the leading integrated business solutions provider in the Asia-Pacific region, recognized for our commitment to sustainability, technological innovation, and creating lasting partnerships that drive economic growth and environmental stewardship.</span>
+                            <span class="jp hidden">持続可能性への取り組み、技術革新、経済成長と環境管理を促進する永続的なパートナーシップの創造で認められる、アジア太平洋地域の主要な統合ビジネスソリューションプロバイダーになること。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Company Values -->
+        <div class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                        <span class="en">Our Core Values</span>
+                        <span class="jp hidden">私たちの核となる価値観</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        <span class="en">These fundamental principles guide every decision we make and every relationship we build</span>
+                        <span class="jp hidden">これらの基本原則は、私たちが下すすべての決定と築くすべての関係を導いています</span>
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+                    <!-- Value 1 -->
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-leaf text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">
+                            <span class="en">Sustainability</span>
+                            <span class="jp hidden">持続可能性</span>
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            <span class="en">Environmental responsibility is at the heart of everything we do, from our recycling programs to eco-friendly logistics solutions.</span>
+                            <span class="jp hidden">リサイクルプログラムから環境に優しい物流ソリューションまで、私たちが行うすべての活動の中心に環境責任があります。</span>
+                        </p>
+                    </div>
+
+                    <!-- Value 2 -->
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-handshake text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">
+                            <span class="en">Integrity</span>
+                            <span class="jp hidden">誠実性</span>
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            <span class="en">We build trust through transparency, honest communication, and ethical business practices in all our international partnerships.</span>
+                            <span class="jp hidden">私たちはすべての国際的パートナーシップにおいて、透明性、正直なコミュニケーション、倫理的なビジネス慣行を通じて信頼を築きます。</span>
+                        </p>
+                    </div>
+
+                    <!-- Value 3 -->
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-lightbulb text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">
+                            <span class="en">Innovation</span>
+                            <span class="jp hidden">イノベーション</span>
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            <span class="en">We continuously seek new technologies and methods to improve our services and create value for our clients worldwide.</span>
+                            <span class="jp hidden">私たちは継続的にサービスを向上させ、世界中のクライアントに価値を創造するための新しい技術と方法を求めています。</span>
+                        </p>
+                    </div>
+
+                    <!-- Value 4 -->
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-users text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">
+                            <span class="en">Excellence</span>
+                            <span class="jp hidden">卓越性</span>
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            <span class="en">We strive for excellence in every project, delivering quality results that exceed expectations and drive business success.</span>
+                            <span class="jp hidden">私たちはすべてのプロジェクトで卓越性を追求し、期待を超え、ビジネスの成功を促進する質の高い結果を提供します。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+    </section>
+
+    <!--------------------------------------------- Services Section ---------------------------------------------------->
+    <section id="services" class="section">
+        <!-- Hero Section for Services -->
+        <div class="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden" style="padding-top: 120px;">
+            <div class="absolute inset-0 bg-black opacity-20"></div>
+            <div class="absolute inset-0">
+                <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);"></div>
+            </div>
+            
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center max-w-4xl mx-auto">
+                    <h1 class="text-5xl lg:text-6xl font-bold mb-8 leading-tight hero-title-white">
+                        <span class="en">Comprehensive Business</span>
+                        <span class="jp hidden">包括的なビジネスソリューション</span>
+                        <br>
+                        <span class="en text-blue-300">Solutions</span>
+                    </h1>
+                    
+                    <p class="text-xl lg:text-2xl mb-12 leading-relaxed opacity-90">
+                        <span class="en">From recycling and vehicle services to international logistics and trade facilitation - we deliver excellence across every touchpoint in Sri Lanka, Japan, and the Pacific region.</span>
+                        <span class="jp hidden">リサイクルや車両サービスから国際物流や貿易促進まで - スリランカ、日本、太平洋地域のあらゆる接点で卓越性を提供します。</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Content -->
+        <div class="py-20 bg-gradient-to-br from-slate-50 to-white">
+            <div class="container mx-auto px-6">
+                <!-- Services Grid -->
+                <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-20">
+                    <!-- Recycling Services -->
+                    <div class="group relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative p-8">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-recycle text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900 group-hover:text-blue-600 transition-colors">
+                                <span class="en">Recycling Services</span>
+                                <span class="jp hidden">リサイクルサービス</span>
+                            </h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                <span class="en">Comprehensive collection and processing of metals, plastics, electronic waste, and more with eco-friendly solutions.</span>
+                                <span class="jp hidden">金属、プラスチック、電子廃棄物などの包括的な回収・処理を環境に優しいソリューションで提供。</span>
+                            </p>
+                            <div class="space-y-3">
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Metal scrap processing</span>
+                                    <span class="jp hidden">金属スクラップ処理</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Battery and appliance disposal</span>
+                                    <span class="jp hidden">バッテリー・家電の処分</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Eco-friendly processing methods</span>
+                                    <span class="jp hidden">環境に優しい処理方法</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Repair -->
+                    <div class="group relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative p-8">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-wrench text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900 group-hover:text-blue-600 transition-colors">
+                                <span class="en">Vehicle Repair</span>
+                                <span class="jp hidden">車両整備</span>
+                            </h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                <span class="en">Professional vehicle repairs, inspections, and maintenance services by certified mechanics.</span>
+                                <span class="jp hidden">認定整備士による専門的な車両修理、点検、メンテナンスサービス。</span>
+                            </p>
+                            <div class="space-y-3">
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Engine, brake, suspension repairs</span>
+                                    <span class="jp hidden">エンジン・ブレーキ・足回りの修理</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Vehicle inspection preparation</span>
+                                    <span class="jp hidden">車検対応</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Bodywork and painting</span>
+                                    <span class="jp hidden">板金・塗装</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Buy & Sell -->
+                    <div class="group relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative p-8">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-car text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900 group-hover:text-blue-600 transition-colors">
+                                <span class="en">Vehicle Trading</span>
+                                <span class="jp hidden">中古車売買</span>
+                            </h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                <span class="en">Fair-priced vehicle purchasing and quality-inspected car sales for local and international markets.</span>
+                                <span class="jp hidden">適正価格での車両買取と品質検査済み車両の国内外販売。</span>
+                            </p>
+                            <div class="space-y-3">
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Used car purchasing (any condition)</span>
+                                    <span class="jp hidden">中古車買取（状態問わず）</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                                                       <span class="en">Export support services</span>
+                                    <span class="jp hidden">輸出サポートサービス</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Auction support</span>
+                                    <span class="jp hidden">オークション支援</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Overseas Business -->
+                    <div class="group relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative p-8">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-globe text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900 group-hover:text-blue-600 transition-colors">
+                                <span class="en">International Trade</span>
+                                <span class="jp hidden">国際貿易</span>
+                            </h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                <span class="en">Strategic partnerships and comprehensive support for global import/export operations.</span>
+                                <span class="jp hidden">戦略的パートナーシップとグローバルな輸出入業務の包括的サポート。</span>
+                            </p>
+                            <div class="space-y-3">
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">International partnerships</span>
+                                    <span class="jp hidden">国際パートナーシップ</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Cultural & language support</span>
+                                    <span class="jp hidden">文化・言語サポート</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Market expansion guidance</span>
+                                    <span class="jp hidden">市場拡大ガイダンス</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Container Loading & Shipping -->
+                    <div class="group relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative p-8">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-shipping-fast text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900 group-hover:text-blue-600 transition-colors">
+                                <span class="en">Container Services</span>
+                                <span class="jp hidden">コンテナサービス</span>
+                            </h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                <span class="en">Professional container loading and international shipping coordination services.</span>
+                                <span class="jp hidden">プロフェッショナルなコンテナ積込と国際輸送調整サービス。</span>
+                            </p>
+                            <div class="space-y-3">
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Vehicle & parts loading</span>
+                                    <span class="jp hidden">車両・パーツ積込</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Export coordination</span>
+                                    <span class="jp hidden">輸出調整</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Freight partnerships</span>
+                                    <span class="jp hidden">物流パートナーシップ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sea & Air Freight -->
+                    <div class="group relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative p-8">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-ship text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900 group-hover:text-blue-600 transition-colors">
+                                <span class="en">Logistics Solutions</span>
+                                <span class="jp hidden">物流ソリューション</span>
+                            </h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                <span class="en">Comprehensive sea and air freight services for efficient global cargo movement.</span>
+                                <span class="jp hidden">効率的なグローバル貨物輸送のための包括的な海上・航空輸送サービス。</span>
+                            </p>
+                            <div class="space-y-3">
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">FCL & LCL shipping</span>
+                                    <span class="jp hidden">FCL・LCL輸送</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Customs clearance</span>
+                                    <span class="jp hidden">通関手続き</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="en">Door-to-door delivery</span>
+                                    <span class="jp hidden">ドア・ツー・ドア配送</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Choose Us Section -->
+                <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-12 text-white relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+                    <div class="relative z-10">
+                        <div class="text-center mb-12">
+                            <h3 class="text-3xl font-bold mb-4 text-white">
+                                <span class="en">Why Choose Our Services?</span>
+                                <span class="jp hidden">私たちのサービスを選ぶ理由</span>
+                            </h3>
+                            <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+                                <span class="en">Excellence in every aspect of our operations</span>
+                                <span class="jp hidden">業務のあらゆる側面における卓越性</span>
+                            </p>
+                        </div>
+                        <div class="grid md:grid-cols-4 gap-8">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-2xl">🔄</span>
+                                </div>
+                                <h4 class="text-lg font-semibold mb-2 text-white">
+                                    <span class="en">Eco-Friendly</span>
+                                    <span class="jp hidden">環境配慮</span>
+                                </h4>
+                                <p class="text-gray-300 text-sm">
+                                    <span class="en">Sustainable practices</span>
+                                    <span class="jp hidden">持続可能な慣行</span>
+                                </p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-2xl">🔧</span>
+                                </div>
+                                <h4 class="text-lg font-semibold mb-2 text-white">
+                                    <span class="en">Expert Service</span>
+                                    <span class="jp hidden">専門技術</span>
+                                </h4>
+                                <p class="text-gray-300 text-sm">
+                                    <span class="en">Professional expertise</span>
+                                    <span class="jp hidden">専門的な技術力</span>
+                                </p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-2xl">🌍</span>
+                                </div>
+                                <h4 class="text-lg font-semibold mb-2 text-white">
+                                    <span class="en">Global Network</span>
+                                    <span class="jp hidden">グローバルネットワーク</span>
+                                </h4>
+                                <p class="text-gray-300 text-sm">
+                                    <span class="en">Worldwide reach</span>
+                                    <span class="jp hidden">世界規模のリーチ</span>
+                                </p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-2xl">💰</span>
+                                </div>
+                                <h4 class="text-lg font-semibold mb-2 text-white">
+                                    <span class="en">Fair Pricing</span>
+                                    <span class="jp hidden">適正価格</span>
+                                </h4>
+                                <p class="text-gray-300 text-sm">
+                                    <span class="en">Competitive rates</span>
+                                    <span class="jp hidden">競争力のある料金</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-------------------------------------------- Gallery Section ------------------------------------------------------------>
+    <section id="gallery" class="section">
+        <!-- Hero Section for Gallery -->
+        <div class="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden" style="padding-top: 120px;">
+            <div class="absolute inset-0 bg-black opacity-20"></div>
+            <div class="absolute inset-0">
+                <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);"></div>
+            </div>
+            
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center max-w-4xl mx-auto">
+                    <h1 class="text-5xl lg:text-6xl font-bold mb-8 leading-tight hero-title-white">
+                        <span class="en">Excellence in</span>
+                        <span class="jp hidden">オペレーションの卓越性</span>
+                        <br>
+                        <span class="en text-blue-300">Operations</span>
+                    </h1>
+                    
+                    <p class="text-xl lg:text-2xl mb-12 leading-relaxed opacity-90">
+                        <span class="en">Showcasing our comprehensive operations across logistics, recycling, vehicle services, and international trade throughout Sri Lanka, Japan, and the Pacific region.</span>
+                        <span class="jp hidden">スリランカ、日本、太平洋地域全体にわたる物流、リサイクル、車両サービス、国際貿易における包括的な事業を紹介します。</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Content -->
+        <div class="py-20 bg-gradient-to-br from-slate-50 to-white">
+            <div class="container mx-auto px-6">
+                <!-- Gallery Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="group relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 animate-in">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1586528116493-a029325ead5e?w=400&h=300&fit=crop" alt="Port Operations" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <div class="px-3 py-1 bg-blue-600 rounded-full text-xs font-semibold text-white">
+                                    <span class="en">Port Operations</span>
+                                    <span class="jp hidden">港湾業務</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative p-6">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">
+                                <span class="en">International Port Services</span>
+                                <span class="jp hidden">国際港湾サービス</span>
+                            </h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="en">Strategic port operations ensuring efficient cargo handling</span>
+                                <span class="jp hidden">効率的な貨物取扱を確保する戦略的港湾業務</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="group relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 animate-in">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" alt="Container Loading" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <div class="px-3 py-1 bg-blue-600 rounded-full text-xs font-semibold text-white">
+                                    <span class="en">Container Loading</span>
+                                    <span class="jp hidden">コンテナ積込</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative p-6">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">
+                                <span class="en">Expert Container Services</span>
+                                <span class="jp hidden">専門コンテナサービス</span>
+                            </h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="en">Professional loading and securing of international shipments</span>
+                                <span class="jp hidden">国際輸送の専門的な積込と固定</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="group relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 animate-in">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&h=300&fit=crop" alt="Warehouse" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <div class="px-3 py-1 bg-blue-600 rounded-full text-xs font-semibold text-white">
+                                    <span class="en">Warehouse</span>
+                                    <span class="jp hidden">倉庫</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative p-6">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">
+                                <span class="en">Modern Storage Facilities</span>
+                                <span class="jp hidden">近代的な倉庫施設</span>
+                            </h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="en">State-of-the-art warehousing with advanced inventory management</span>
+                                <span class="jp hidden">先進的な在庫管理を備えた最先端の倉庫</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="group relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 animate-in">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Shipping" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <div class="px-3 py-1 bg-blue-600 rounded-full text-xs font-semibold text-white">
+                                    <span class="en">Shipping</span>
+                                    <span class="jp hidden">輸送</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative p-6">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">
+                                <span class="en">Global Shipping Network</span>
+                                <span class="jp hidden">グローバル輸送ネットワーク</span>
+                            </h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="en">Comprehensive sea and air freight solutions worldwide</span>
+                                <span class="jp hidden">世界規模の包括的な海上・航空輸送ソリューション</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="group relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 animate-in">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop" alt="Quality Control" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <div class="px-3 py-1 bg-blue-600 rounded-full text-xs font-semibold text-white">
+                                    <span class="en">Quality Control</span>
+                                    <span class="jp hidden">品質管理</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative p-6">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">
+                                <span class="en">Rigorous Quality Assurance</span>
+                                <span class="jp hidden">厳格な品質保証</span>
+                            </h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="en">Comprehensive inspection and quality control processes</span>
+                                <span class="jp hidden">包括的な検査と品質管理プロセス</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="group relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 animate-in">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=400&h=300&fit=crop" alt="Technology" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <div class="px-3 py-1 bg-blue-600 rounded-full text-xs font-semibold text-white">
+                                    <span class="en">Technology</span>
+                                    <span class="jp hidden">技術</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative p-6">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">
+                                <span class="en">Advanced Technology Integration</span>
+                                <span class="jp hidden">先進技術統合</span>
+                            </h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="en">Cutting-edge systems for tracking and management</span>
+                                <span class="jp hidden">追跡と管理のための最先端システム</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Statistics Section -->
+                <div class="mt-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-12 text-white relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+                    <div class="relative z-10">
+                        <div class="text-center mb-12">
+                            <h3 class="text-3xl font-bold mb-4 text-white">
+                                <span class="en">Our Operational Excellence</span>
+                                <span class="jp hidden">私たちの運用卓越性</span>
+                            </h3>
+                            <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+                                <span class="en">Delivering consistent results across all our service areas</span>
+                                <span class="jp hidden">すべてのサービス分野で一貫した結果を提供</span>
+                            </p>
+                        </div>
+                        <div class="grid md:grid-cols-4 gap-8">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-blue-400 mb-2">500+</div>
+                                <p class="text-gray-300">
+                                    <span class="en">Successful Projects</span>
+                                    <span class="jp hidden">成功プロジェクト</span>
+                                </p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-blue-400 mb-2">3+</div>
+                                <p class="text-gray-300">
+                                    <span class="en">Countries Served</span>
+                                    <span class="jp hidden">サービス提供国</span>
+                                </p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-blue-400 mb-2">24/7</div>
+                                <p class="text-gray-300">
+                                    <span class="en">Support Available</span>
+                                    <span class="jp hidden">サポート対応</span>
+                                </p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-blue-400 mb-2">98%</div>
+                                <p class="text-gray-300">
+                                    <span class="en">Client Satisfaction</span>
+                                    <span class="jp hidden">顧客満足度</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!----------------------------------------------- Contact Section ------------------------------------------------------>
+    <section id="contact" class="section">
+        <!-- Hero Section for Contact -->
+        <div class="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden" style="padding-top: 120px;">
+            <div class="absolute inset-0 bg-black opacity-20"></div>
+            <div class="absolute inset-0">
+                <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);"></div>
+            </div>
+            
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center max-w-4xl mx-auto">
+                    <h1 class="text-5xl lg:text-6xl font-bold mb-8 leading-tight hero-title-white">
+                        <span class="en">Get In</span>
+                        <span class="jp hidden">連絡を取る</span>
+                        <br>
+                        <span class="en text-blue-300">Touch</span>
+                    </h1>
+                    
+                    <p class="text-xl lg:text-2xl mb-12 leading-relaxed opacity-90">
+                        <span class="en">Ready to take your business to the next level? Contact our team of experts for personalized logistics solutions and professional consultation across Sri Lanka, Japan, and beyond.</span>
+                        <span class="jp hidden">ビジネスを次のレベルに引き上げる準備はできていますか？スリランカ、日本、そしてその先での個別化された物流ソリューションと専門的な相談のために、専門家チームにお問い合わせください。</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Content -->
+        <div class="py-20 bg-gradient-to-br from-slate-50 to-white">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16">
+                    <div class="slide-left">
+                        <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 rounded-3xl shadow-2xl text-white relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-2xl font-bold mb-8 text-white flex items-center">
+                                    <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-map-marker-alt text-white"></i>
+                                    </div>
+                                    <span class="en">Contact Information</span>
+                                    <span class="jp hidden">連絡先情報</span>
+                                </h3>
+                                <div class="space-y-6">
+                                    <div class="flex items-start hover:transform hover:translate-x-2 transition-all duration-300">
+                                        <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mr-4 mt-1">
+                                            <i class="fas fa-building text-blue-400"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-white mb-1">Sri Lanka Office</p>
+                                            <p class="text-gray-300 leading-relaxed">123 Galle Road, Colombo 03<br>Sri Lanka</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start hover:transform hover:translate-x-2 transition-all duration-300">
+                                        <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mr-4 mt-1">
+                                            <i class="fas fa-building text-blue-400"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-white mb-1">Japan Office</p>
+                                            <p class="text-gray-300 leading-relaxed">Tokyo Port, Minato City<br>Japan</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start hover:transform hover:translate-x-2 transition-all duration-300">
+                                        <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mr-4 mt-1">
+                                            <i class="fas fa-phone text-blue-400"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-white mb-1">Phone</p>
+                                            <p class="text-gray-300">+94 11 234 5678</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start hover:transform hover:translate-x-2 transition-all duration-300">
+                                        <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mr-4 mt-1">
+                                            <i class="fas fa-envelope text-blue-400"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-white mb-1">Email</p>
+                                            <p class="text-gray-300">info@nalintrading.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start hover:transform hover:translate-x-2 transition-all duration-300">
+                                        <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mr-4 mt-1">
+                                            <i class="fas fa-clock text-blue-400"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-white mb-1">
+                                                <span class="en">Business Hours</span>
+                                                <span class="jp hidden">営業時間</span>
+                                            </p>
+                                            <p class="text-gray-300">
+                                                <span class="en">Mon - Fri: 8:00 AM - 6:00 PM<br>Sat: 9:00 AM - 2:00 PM</span>
+                                                <span class="jp hidden">月 - 金: 8:00 - 18:00<br>土: 9:00 - 14:00</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-right">
+                        <div class="bg-white p-8 rounded-3xl shadow-2xl border-2 border-gray-100 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-2xl font-bold mb-8 text-gray-900 flex items-center">
+                                    <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-paper-plane text-white"></i>
+                                    </div>
+                                    <span class="en">Send us a Message</span>
+                                    <span class="jp hidden">メッセージを送る</span>
+                                </h3>
+                                <!-- Add id and message area -->
+                                <form id="contactForm" class="space-y-6">
+                                    <div>
+                                        <label class="block text-gray-700 font-semibold mb-3">
+                                            <span class="en">Full Name *</span>
+                                            <span class="jp hidden">お名前 *</span>
+                                        </label>
+                                        <input type="text" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Enter your name" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 font-semibold mb-3">
+                                            <span class="en">Email Address *</span>
+                                            <span class="jp hidden">メールアドレス *</span>
+                                        </label>
+                                        <input type="email" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="your@email.com" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 font-semibold mb-3">
+                                            <span class="en">Subject *</span>
+                                            <span class="jp hidden">件名 *</span>
+                                        </label>
+                                        <input type="text" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Subject" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 font-semibold mb-3">
+                                            <span class="en">Message *</span>
+                                            <span class="jp hidden">メッセージ *</span>
+                                        </label>
+                                        <textarea rows="5" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Tell us about your project or requirements..." required></textarea>
+                                    </div>
+                                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-[1.02] shadow-lg hover:shadow-xl">
+                                        <span class="en">Send Message</span>
+                                        <span class="jp hidden">メッセージを送信</span>
+                                        <i class="fas fa-paper-plane ml-2"></i>
+                                    </button>
+                                    <div id="emailStatus" class="mt-4 text-center text-lg font-semibold"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.2) 0%, transparent 50%);"></div>
+        </div>
+        
+        <!-- Main Footer Content -->
+        <div class="relative z-10 py-20">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
+                    <!-- Company Info -->
+                    <div class="lg:col-span-2">
+                        <div class="flex items-center mb-6">
+                            <img src="images/logo1.png" alt="Nalin Trading" class="w-12 h-12 rounded-lg bg-blue-100 p-2 mr-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-white">Nalin Trading</h3>
+                                <p class="text-blue-300 text-sm font-medium">
+                                    <span class="en">Pvt Ltd</span>
+                                    <span class="jp hidden">プロフェッショナル物流ソリューション</span>
+                                </p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-8 leading-relaxed max-w-lg text-lg">
+                            <span class="en">Connecting Sri Lanka, Japan, and the Pacific region with comprehensive logistics, recycling, vehicle services, and international trade solutions.</span>
+                            <span class="jp hidden">スリランカ、日本、太平洋地域を結ぶ包括的な物流、リサイクル、車両サービス、国際貿易ソリューション。</span>
+                        </p>
+                        
+                        <!-- Contact Info -->
+                        <div class="space-y-4">
+                            <div class="flex items-center text-gray-300 hover:text-blue-400 transition-colors">
+                                <div class="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-map-marker-alt text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-white">Sri Lanka Office</p>
+                                    <p class="text-sm">123 Galle Road, Colombo 03, Sri Lanka</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-gray-300 hover:text-blue-400 transition-colors">
+                                <div class="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-map-marker-alt text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-white">Japan Office</p>
+                                    <p class="text-sm">Tokyo Port, Minato City, Japan</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-gray-300 hover:text-blue-400 transition-colors">
+                                <div class="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-phone text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-white">Phone</p>
+                                    <p class="text-sm">+94 11 234 5678</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-gray-300 hover:text-blue-400 transition-colors">
+                                <div class="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-white">Email</p>
+                                    <p class="text-sm">info@nalintrading.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Services -->
+                    <div>
+                        <h4 class="text-xl font-bold mb-6 text-white flex items-center">
+                            <i class="fas fa-cogs text-blue-400 mr-3"></i>
+                            <span class="en">Our Services</span>
+                            <span class="jp hidden">サービス</span>
+                        </h4>
+                        <ul class="space-y-4">
+                            <li>
+                                <a href="#" onclick="showSection('services')" class="text-gray-300 hover:text-blue-400 transition-all duration-300 text-sm flex items-center group hover:translate-x-2">
+                                    <i class="fas fa-ship text-blue-400 w-4 mr-3"></i>
+                                    <span class="en">Sea & Air Freight</span>
+                                    <span class="jp hidden">海上・航空輸送</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="showSection('services')" class="text-gray-300 hover:text-blue-400 transition-all duration-300 text-sm flex items-center group hover:translate-x-2">
+                                    <i class="fas fa-car text-blue-400 w-4 mr-3"></i>
+                                    <span class="en">Vehicle Services</span>
+                                    <span class="jp hidden">車両サービス</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="showSection('services')" class="text-gray-300 hover:text-blue-400 transition-all duration-300 text-sm flex items-center group hover:translate-x-2">
+                                    <i class="fas fa-recycle text-blue-400 w-4 mr-3"></i>
+                                    <span class="en">Recycling Solutions</span>
+                                    <span class="jp hidden">リサイクルソリューション</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="showSection('services')" class="text-gray-300 hover:text-blue-400 transition-all duration-300 text-sm flex items-center group hover:translate-x-2">
+                                    <i class="fas fa-globe text-blue-400 w-4 mr-3"></i>
+                                    <span class="en">International Trade</span>
+                                    <span class="jp hidden">国際貿易</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div>
+                        <h4 class="text-xl font-bold mb-6 text-white flex items-center">
+                            <i class="fas fa-link text-blue-400 mr-3"></i>
+                            <span class="en">Quick Links</span>
+                            <span class="jp hidden">クイックリンク</span>
+                        </h4>
+                        <ul class="space-y-4">
+                            <li>
+                                <a href="#" onclick="showSection('about')" class="text-gray-300 hover:text-blue-400 transition-all duration-300 text-sm flex items-center group hover:translate-x-2">
+                                    <i class="fas fa-building text-blue-400 w-4 mr-3"></i>
+                                    <span class="en">About Us</span>
+                                    <span class="jp hidden">会社概要</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="showSection('gallery')" class="text-gray-300 hover:text-blue-400 transition-all duration-300 text-sm flex items-center group hover:translate-x-2">
+                                    <i class="fas fa-images text-blue-400 w-4 mr-3"></i>
+                                    <span class="en">Our Portfolio</span>
+                                    <span class="jp hidden">実績</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="showSection('contact')" class="text-gray-300 hover:text-blue-400 transition-all duration-300 text-sm flex items-center group hover:translate-x-2">
+                                    <i class="fas fa-envelope text-blue-400 w-4 mr-3"></i>
+                                    <span class="en">Contact Us</span>
+                                    <span class="jp hidden">お問い合わせ</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-300 hover:text-blue-400 transition-all duration-300 text-sm flex items-center group hover:translate-x-2">
+                                    <i class="fas fa-shield-alt text-blue-400 w-4 mr-3"></i>
+                                    <span class="en">Privacy Policy</span>
+                                    <span class="jp hidden">プライバシーポリシー</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-300 hover:text-blue-400 transition-all duration-300 text-sm flex items-center group hover:translate-x-2">
+                                    <i class="fas fa-file-contract text-blue-400 w-4 mr-3"></i>
+                                    <span class="en">Terms of Service</span>
+                                    <span class="jp hidden">利用規約</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Divider -->
+                <div class="border-t border-gray-700 mt-16 pt-8">
+                    <div class="flex flex-col lg:flex-row justify-between items-center">
+                        <!-- Copyright -->
+                        <div class="text-center lg:text-left">
+                            <p class="text-gray-400 text-sm mb-2">
+                                &copy; 2025 Nalin Trading. 
+                                <span class="en">All rights reserved.</span>
+                                <span class="jp hidden">全著作権所有。</span>
+                            </p>
+                            <p class="text-gray-500 text-xs">
+                                <span class="en">Professional logistics solutions across Sri Lanka, Japan & Pacific Region</span>
+                                <span class="jp hidden">スリランカ、日本、太平洋地域のプロフェッショナル物流ソリューション</span>
+                            </p>
+                        </div>
+                        
+                        <!-- Social Media Links -->
+                        <div class="flex items-center space-x-4">
+                            <span class="text-gray-400 text-sm font-medium">
+                                <span class="en">Follow Us:</span>
+                                <span class="jp hidden">フォロー:</span>
+                            </span>
+                            <div class="flex space-x-3">
+                                <a href="#" class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center hover:from-blue-500 hover:to-blue-600 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-lg hover:shadow-blue-500/25 group">
+                                    <i class="fab fa-facebook-f text-white text-lg group-hover:scale-110 transition-transform"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-gradient-to-br from-blue-700 to-blue-800 rounded-xl flex items-center justify-center hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-lg hover:shadow-blue-600/25 group">
+                                    <i class="fab fa-linkedin-in text-white text-lg group-hover:scale-110 transition-transform"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center hover:from-sky-400 hover:to-sky-500 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-lg hover:shadow-sky-500/25 group">
+                                    <i class="fab fa-twitter text-white text-lg group-hover:scale-110 transition-transform"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center hover:from-pink-400 hover:to-rose-500 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-lg hover:shadow-pink-500/25 group">
+                                    <i class="fab fa-instagram text-white text-lg group-hover:scale-110 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Decorative Elements -->
+        <div class="absolute top-10 right-10 w-24 h-24 bg-blue-500/10 rounded-full animate-pulse"></div>
+        <div class="absolute bottom-20 left-10 w-16 h-16 bg-blue-400/10 rounded-full animate-bounce"></div>
+        <div class="absolute top-1/2 left-1/4 w-2 h-2 bg-blue-400/20 rounded-full animate-ping"></div>
+        <div class="absolute bottom-1/3 right-1/3 w-3 h-3 bg-blue-300/15 rounded-full animate-pulse"></div>
+    </footer>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init('YgK-UJKL3PZk7ArQY'); // Replace with your EmailJS public key
+        })();
+    </script>
+    <script src="js/main.js"></script>
+    <script>
+        // Enhanced navbar with scroll progress
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            // Update scroll progress
+            scrollProgress.style.width = scrollPercent + '%';
+            
+            // Navbar scroll effect
+            if (scrollTop > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Enhanced mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('show');
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!navLinks.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                navLinks.classList.remove('show');
+            }
+        });
+        
+        // Enhanced navigation interaction
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.setProperty('--shimmer-delay', '0s');
+            });
+        });
+        
+        // Add explicit debugging and fallback for all navigation buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            // Test all navigation buttons
+            const navButtons = [
+                { id: 'home-nav-btn', section: 'home' },
+                { id: 'about-nav-btn', section: 'about' },
+                { id: 'services-nav-btn', section: 'services' },
+                { id: 'gallery-nav-btn', section: 'gallery' },
+                { id: 'contact-nav-btn', section: 'contact' }
+            ];
+            
+            navButtons.forEach(({ id, section }) => {
+                const button = document.getElementById(id);
+                if (button) {
+                    console.log(`${section} button found and ready`);
+                    
+                    // Add additional click handler for reliability
+                    button.addEventListener('click', function(e) {
+                        console.log(`${section} button clicked directly`);
+                        e.preventDefault();
+                        e.stopPropagation();
+                        showSection(section);
+                    });
+                } else {
+                    console.warn(`Button not found: ${id}`);
+                }
+            });
+            
+            // Also add click handlers to buttons that call specific sections from content
+            const heroButtons = document.querySelectorAll('[onclick*="showSection(\'services\')"], [onclick*="showSection(\'contact\')"]');
+            heroButtons.forEach(btn => {
+                console.log('Found hero button with navigation onclick');
+                btn.addEventListener('click', function(e) {
+                    // Let the original onclick handle the navigation
+                    console.log('Hero button navigation triggered');
+                });
+            });
+        });
+        
+        // Enhanced background image handling
+        document.addEventListener('DOMContentLoaded', function() {
+            // First try the uploaded image
+            const testImg = new Image();
+            testImg.onload = function() {
+                console.log('Business background image loaded successfully');
+                const heroElement = document.querySelector('.hero-section');
+                if (heroElement) {
+                    heroElement.style.backgroundImage = `
+                        linear-gradient(135deg, rgba(30,  58, 138, 0.8) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(30, 58, 138, 0.8) 100%), 
+                        url('images/business-bg.jpg')
+                    `;
+                }
+            };
+            testImg.onerror = function() {
+                console.log('Custom background failed, trying alternative paths...');
+                
+                // Try alternative image names
+                const alternatives = [
+                    'images/landing.jpg',
+                    'images/bg.jpg',
+                    'images/hero-bg.jpg'
+                ];
+                
+                let currentIndex = 0;
+                
+                function tryNextImage() {
+                    if (currentIndex < alternatives.length) {
+                        const altImg = new Image();
+                        altImg.onload = function() {
+                            console.log(`Alternative background loaded: ${alternatives[currentIndex]}`);
+                            const heroElement = document.querySelector('.hero-section');
+                            if (heroElement) {
+                                heroElement.style.backgroundImage = `
+                                    linear-gradient(135deg, rgba(30, 58, 138, 0.8) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(30, 58, 138, 0.8) 100%), 
+                                    url('${alternatives[currentIndex]}')
+                                `;
+                            }
+                        };
+                        altImg.onerror = function() {
+                            currentIndex++;
+                            tryNextImage();
+                        };
+                        altImg.src = alternatives[currentIndex];
+                    } else {
+                        // Use a high-quality unsplash business image as fallback
+                        console.log('Using high-quality fallback background');
+                        const heroElement = document.querySelector('.hero-section');
+                        if (heroElement) {
+                            heroElement.style.backgroundImage = `
+                                linear-gradient(135deg, rgba(30, 58, 138, 0.8) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(30, 58, 138, 0.8) 100%), 
+                                url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&crop=center')
+                            `;
+                        }
+                    }
+                }
+                
+                tryNextImage();
+            };
+            testImg.src = 'images/business-bg.jpg';
+        });
+    </script>
+</body>
+</html>
