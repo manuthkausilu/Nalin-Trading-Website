@@ -262,64 +262,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Enhanced background image handling
-document.addEventListener('DOMContentLoaded', function() {
-    // Use the provided landing image as the primary background
-    const testImg = new Image();
-    testImg.onload = function() {
-        console.log('Landing background image loaded successfully');
-        const heroElement = document.querySelector('.hero-section');
-        if (heroElement) {
-            heroElement.style.backgroundImage = `
-                linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.7) 50%, rgba(15, 23, 42, 0.8) 100%),
-                url('images/landing.jpg')
-            `;
-        }
-    };
-    testImg.onerror = function() {
-        console.log('Landing background failed, trying alternative paths...');
-        // Try alternative image names
-        const alternatives = [
-            'images/business-bg.jpg',
-            'images/bg.jpg',
-            'images/hero-bg.jpg'
-        ];
-        let currentIndex = 0;
-        function tryNextImage() {
-            if (currentIndex < alternatives.length) {
-                const altImg = new Image();
-                altImg.onload = function() {
-                    console.log(`Alternative background loaded: ${alternatives[currentIndex]}`);
-                    const heroElement = document.querySelector('.hero-section');
-                    if (heroElement) {
-                        heroElement.style.backgroundImage = `
-                            linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.7) 50%, rgba(15, 23, 42, 0.8) 100%),
-                            url('${alternatives[currentIndex]}')
-                        `;
-                    }
-                };
-                altImg.onerror = function() {
-                    currentIndex++;
-                    tryNextImage();
-                };
-                altImg.src = alternatives[currentIndex];
-            } else {
-                // Use a high-quality unsplash business image as fallback
-                console.log('Using high-quality fallback background');
-                const heroElement = document.querySelector('.hero-section');
-                if (heroElement) {
-                    heroElement.style.backgroundImage = `
-                        linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.7) 50%, rgba(15, 23, 42, 0.8) 100%),
-                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&crop=center')
-                    `;
-                }
-            }
-        }
-        tryNextImage();
-    };
-    testImg.src = 'images/landing.jpg';
-});
-
 // Make functions globally available
 window.showSection = showSection;
 window.toggleLanguage = toggleLanguage;
