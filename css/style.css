@@ -91,6 +91,32 @@ body {
   font-size: 24px;
 }
 
+/* Modern Service Card (Glassmorphism) */
+.service-card-modern {
+  background: rgba(255,255,255,0.6);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(59,130,246,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid rgba(59,130,246,0.10);
+  backdrop-filter: blur(12px);
+  transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
+  position: relative;
+}
+.service-card-modern:hover {
+  box-shadow: 0 16px 40px rgba(59,130,246,0.18), 0 4px 16px rgba(0,0,0,0.09);
+  background: rgba(255,255,255,0.85);
+  transform: translateY(-6px) scale(1.03);
+  border-color: #3b82f6;
+}
+.service-card-modern .fa-check-circle {
+  color: #3b82f6 !important;
+}
+.service-card-modern .fa {
+  transition: color 0.2s;
+}
+.service-card-modern:hover .fa {
+  color: #1e40af !important;
+}
+
 /* Professional Typography */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
