@@ -145,6 +145,60 @@ function animateElements() {
     });
 }
 
+// Fade-up scroll animation for all main content blocks
+function fadeUpOnScrollInit() {
+    const targets = document.querySelectorAll(
+        '.section, .animate-in, .slide-left, .slide-right'
+    );
+    targets.forEach(el => {
+        el.classList.add('scroll-fade-up');
+    });
+
+    if (!('IntersectionObserver' in window)) {
+        targets.forEach(el => el.classList.add('visible'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.13 });
+
+    targets.forEach(el => observer.observe(el));
+}
+
+// Animate sections on scroll (fade+slide in/out)
+function animateSectionsOnScroll() {
+    if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.section').forEach(sec => sec.classList.add('section-visible'));
+        return;
+    }
+    // Only create observer once
+    if (window._sectionScrollAnimObserver) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('section-visible');
+            } else {
+                entry.target.classList.remove('section-visible');
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    document.querySelectorAll('.section').forEach(sec => {
+        observer.observe(sec);
+    });
+
+    window._sectionScrollAnimObserver = observer;
+}
+
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, initializing...');
@@ -197,6 +251,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize animations
     setTimeout(animateElements, 100);
+    
+    // Add fade-up scroll animation to all content blocks
+    fadeUpOnScrollInit();
+
+    // Animate sections on scroll (modern effect)
+    animateSectionsOnScroll();
     
     // Add click handler for scroll indicator
     const scrollIndicator = document.querySelector('.scroll-indicator');

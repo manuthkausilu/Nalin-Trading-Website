@@ -55,6 +55,30 @@ body {
   transform: translateX(0);
 }
 
+/* Fade-up animation for scroll-in effect */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Use fadeUp for scroll-in */
+.scroll-fade-up {
+  opacity: 0;
+  transform: translateY(60px) scale(0.98);
+  will-change: opacity, transform;
+  transition: none;
+}
+
+.scroll-fade-up.visible {
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* Professional Color Scheme */
 .text-primary { color: #1e40af; }
 .text-secondary { color: #64748b; }
@@ -695,4 +719,18 @@ input:focus, textarea:focus {
   background: rgba(30,41,59,0.85);
   border-color: #3b82f6;
   transform: translateY(-4px) scale(1.03);
+}
+
+/* Modern Section Scroll Animation */
+.section {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+  will-change: opacity, transform;
+}
+
+.section.section-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  z-index: 1;
 }
