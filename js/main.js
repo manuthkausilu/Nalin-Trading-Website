@@ -254,6 +254,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     statusDiv.textContent = 'Message sent successfully!';
                     statusDiv.style.color = '#16a34a';
                     contactForm.reset();
+                    // Hide the message after 10 seconds
+                    setTimeout(() => {
+                        statusDiv.textContent = '';
+                        statusDiv.style.color = '';
+                    }, 10000);
                 }, function(error) {
                     statusDiv.textContent = 'Failed to send. Please try again.';
                     statusDiv.style.color = '#dc2626';

@@ -619,62 +619,62 @@ input:focus, textarea:focus {
   }
 }
 
-/* About Page Specific Styles */
-.timeline-item {
-  transition: all 0.3s ease;
+/* Modern Contact Card (Dark Blue Glassmorphism) */
+.modern-contact-card {
+  background: rgba(15,23,42,0.92); /* dark blue glass effect */
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(30,41,59,0.18), 0 2px 8px rgba(0,0,0,0.10);
+  border: 1.5px solid rgba(59,130,246,0.18);
+  backdrop-filter: blur(14px);
+  transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
+  position: relative;
+  color: #fff;
 }
-
-.timeline-item:hover {
-  transform: translateY(-5px);
+.modern-contact-card:focus-within,
+.modern-contact-card:hover {
+  box-shadow: 0 16px 40px rgba(30,41,59,0.28), 0 4px 16px rgba(0,0,0,0.13);
+  background: rgba(15,23,42,0.98);
+  border-color: #3b82f6;
+  transform: translateY(-4px) scale(1.01);
 }
-
-.timeline-item .bg-white:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+.modern-contact-card input,
+.modern-contact-card textarea {
+  background: rgba(30,41,59,0.85);
+  color: #fff;
+  border: 2px solid #334155;
+  transition: border 0.2s, box-shadow 0.2s;
 }
-
-/* Leadership Team Card Enhancements */
-.leader-card {
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.modern-contact-card input:focus,
+.modern-contact-card textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px #3b82f6;
+  background: rgba(30,41,59,0.98);
+  color: #fff;
 }
-
-.leader-card:hover {
-  transform: translateY(-10px) scale(1.02);
+.modern-contact-card button[type="submit"] {
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+  background: linear-gradient(135deg, #2563eb 0%, #1e293b 100%);
+  color: #fff;
+  border: none;
 }
-
-.leader-card img {
-  transition: all 0.3s ease;
+.modern-contact-card label,
+.modern-contact-card .font-semibold,
+.modern-contact-card .text-gray-900 {
+  color: #fff !important;
 }
-
-.leader-card:hover img {
-  transform: scale(1.1);
+.modern-contact-card .text-gray-600,
+.modern-contact-card .text-sm {
+  color: #cbd5e1 !important;
 }
-
-/* Value Cards */
-.value-card {
-  transition: all 0.3s ease;
+.modern-contact-card .w-12.bg-blue-100 {
+  background: rgba(59,130,246,0.10) !important;
 }
-
-.value-card:hover .w-20 {
-  transform: scale(1.1) rotate(5deg);
+.modern-contact-card .w-12.bg-blue-600\/90 {
+  background: #2563eb !important;
 }
-
-/* Mission Vision Cards */
-.mission-vision-card {
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Responsive Timeline */
 @media (max-width: 768px) {
-  .timeline-line {
-    left: 20px;
-  }
-  
-  .timeline-item {
-    margin-left: 40px;
-  }
-  
-  .timeline-item .w-5\/12 {
-    width: 100%;
+  .modern-contact-card {
+    padding: 1.5rem !important;
   }
 }

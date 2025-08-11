@@ -476,6 +476,16 @@
             transform: translateY(-4px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
+
+        /* Contact Section Styles */
+        .modern-contact-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .modern-contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -1352,7 +1362,7 @@
                         </ul>
                     </div>
                 </div>
-
+                
                 <!-- Why Choose Us Section -->
                 <div class="modern-why-choose bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-12 text-white relative overflow-hidden mt-10">
                     <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
@@ -1677,64 +1687,65 @@
         <div class="py-20 bg-gradient-to-br from-slate-50 to-white">
             <div class="container mx-auto px-6">
                 <div class="grid lg:grid-cols-2 gap-16">
+                    <!-- Contact Info Card -->
                     <div class="slide-left">
-                        <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 rounded-3xl shadow-2xl text-white relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+                        <div class="modern-contact-card rounded-3xl shadow-2xl border border-blue-100 p-10 flex flex-col gap-8 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-t-3xl"></div>
                             <div class="relative z-10">
-                                <h3 class="text-2xl font-bold mb-8 text-white flex items-center">
-                                    <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-4">
-                                        <i class="fas fa-map-marker-alt text-white"></i>
+                                <h3 class="text-2xl font-bold mb-8 flex items-center">
+                                    <div class="w-12 h-12 bg-blue-600/90 rounded-full flex items-center justify-center mr-4 shadow-lg">
+                                        <i class="fas fa-map-marker-alt text-white text-xl"></i>
                                     </div>
-                                    <span class="en">Contact Information</span>
-                                    <span class="jp hidden">連絡先情報</span>
+                                    <span class="en text-white">Contact Information</span>
+                                    <span class="jp text-white hidden">連絡先情報</span>
                                 </h3>
                                 <div class="space-y-6">
-                                    <div class="flex items-start hover:transform hover:translate-x-2 transition-all duration-300">
-                                        <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mr-4 mt-1">
-                                            <i class="fas fa-building text-blue-400"></i>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center shadow">
+                                            <i class="fas fa-building text-blue-400 text-lg"></i>
                                         </div>
                                         <div>
-                                            <p class="font-semibold text-white mb-1">Sri Lanka Office</p>
-                                            <p class="text-gray-300 leading-relaxed">123 Galle Road, Colombo 03<br>Sri Lanka</p>
+                                            <p class="font-semibold mb-1">Sri Lanka Office</p>
+                                            <p class="text-sm">123 Galle Road, Colombo 03<br>Sri Lanka</p>
                                         </div>
                                     </div>
-                                    <div class="flex items-start hover:transform hover:translate-x-2 transition-all duration-300">
-                                        <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mr-4 mt-1">
-                                            <i class="fas fa-building text-blue-400"></i>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center shadow">
+                                            <i class="fas fa-building text-blue-400 text-lg"></i>
                                         </div>
                                         <div>
-                                            <p class="font-semibold text-white mb-1">Japan Office</p>
-                                            <p class="text-gray-300 leading-relaxed">Tokyo Port, Minato City<br>Japan</p>
+                                            <p class="font-semibold mb-1">Japan Office</p>
+                                            <p class="text-sm">Tokyo Port, Minato City<br>Japan</p>
                                         </div>
                                     </div>
-                                    <div class="flex items-start hover:transform hover:translate-x-2 transition-all duration-300">
-                                        <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mr-4 mt-1">
-                                            <i class="fas fa-phone text-blue-400"></i>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center shadow">
+                                            <i class="fas fa-phone text-blue-400 text-lg"></i>
                                         </div>
                                         <div>
-                                            <p class="font-semibold text-white mb-1">Phone</p>
-                                            <p class="text-gray-300">+94 11 234 5678</p>
+                                            <p class="font-semibold mb-1">Phone</p>
+                                            <p class="text-sm">+94 11 234 5678</p>
                                         </div>
                                     </div>
-                                    <div class="flex items-start hover:transform hover:translate-x-2 transition-all duration-300">
-                                        <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mr-4 mt-1">
-                                            <i class="fas fa-envelope text-blue-400"></i>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center shadow">
+                                            <i class="fas fa-envelope text-blue-400 text-lg"></i>
                                         </div>
                                         <div>
-                                            <p class="font-semibold text-white mb-1">Email</p>
-                                            <p class="text-gray-300">info@nalintrading.com</p>
+                                            <p class="font-semibold mb-1">Email</p>
+                                            <p class="text-sm">info@nalintrading.com</p>
                                         </div>
                                     </div>
-                                    <div class="flex items-start hover:transform hover:translate-x-2 transition-all duration-300">
-                                        <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mr-4 mt-1">
-                                            <i class="fas fa-clock text-blue-400"></i>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center shadow">
+                                            <i class="fas fa-clock text-blue-400 text-lg"></i>
                                         </div>
                                         <div>
-                                            <p class="font-semibold text-white mb-1">
+                                            <p class="font-semibold mb-1">
                                                 <span class="en">Business Hours</span>
                                                 <span class="jp hidden">営業時間</span>
                                             </p>
-                                            <p class="text-gray-300">
+                                            <p class="text-sm">
                                                 <span class="en">Mon - Fri: 8:00 AM - 6:00 PM<br>Sat: 9:00 AM - 2:00 PM</span>
                                                 <span class="jp hidden">月 - 金: 8:00 - 18:00<br>土: 9:00 - 14:00</span>
                                             </p>
@@ -1744,48 +1755,48 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Contact Form Card -->
                     <div class="slide-right">
-                        <div class="bg-white p-8 rounded-3xl shadow-2xl border-2 border-gray-100 relative overflow-hidden">
-                            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                        <div class="modern-contact-card rounded-3xl shadow-2xl border border-blue-100 p-10 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-t-3xl"></div>
                             <div class="relative z-10">
-                                <h3 class="text-2xl font-bold mb-8 text-gray-900 flex items-center">
-                                    <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-4">
-                                        <i class="fas fa-paper-plane text-white"></i>
+                                <h3 class="text-2xl font-bold mb-8 flex items-center">
+                                    <div class="w-12 h-12 bg-blue-600/90 rounded-full flex items-center justify-center mr-4 shadow-lg">
+                                        <i class="fas fa-paper-plane text-white text-xl"></i>
                                     </div>
-                                    <span class="en">Send us a Message</span>
-                                    <span class="jp hidden">メッセージを送る</span>
+                                    <span class="en text-white">Send us a Message</span>
+                                    <span class="jp hidden text-white">メッセージを送る</span>
                                 </h3>
-                                <!-- Add id and message area -->
                                 <form id="contactForm" class="space-y-6">
                                     <div>
-                                        <label class="block text-gray-700 font-semibold mb-3">
+                                        <label class="block font-semibold mb-3">
                                             <span class="en">Full Name *</span>
                                             <span class="jp hidden">お名前 *</span>
                                         </label>
-                                        <input type="text" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Enter your name" required>
+                                        <input type="text" class="w-full p-4 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Enter your name" required>
                                     </div>
                                     <div>
-                                        <label class="block text-gray-700 font-semibold mb-3">
+                                        <label class="block font-semibold mb-3">
                                             <span class="en">Email Address *</span>
                                             <span class="jp hidden">メールアドレス *</span>
                                         </label>
-                                        <input type="email" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="your@email.com" required>
+                                        <input type="email" class="w-full p-4 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="your@email.com" required>
                                     </div>
                                     <div>
-                                        <label class="block text-gray-700 font-semibold mb-3">
+                                        <label class="block font-semibold mb-3">
                                             <span class="en">Subject *</span>
                                             <span class="jp hidden">件名 *</span>
                                         </label>
-                                        <input type="text" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Subject" required>
+                                        <input type="text" class="w-full p-4 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Subject" required>
                                     </div>
                                     <div>
-                                        <label class="block text-gray-700 font-semibold mb-3">
+                                        <label class="block font-semibold mb-3">
                                             <span class="en">Message *</span>
                                             <span class="jp hidden">メッセージ *</span>
                                         </label>
-                                        <textarea rows="5" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Tell us about your project or requirements..." required></textarea>
+                                        <textarea rows="5" class="w-full p-4 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Tell us about your project or requirements..." required></textarea>
                                     </div>
-                                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-[1.02] shadow-lg hover:shadow-xl">
+                                    <button type="submit" class="w-full py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-[1.02] shadow-lg hover:shadow-xl">
                                         <span class="en">Send Message</span>
                                         <span class="jp hidden">メッセージを送信</span>
                                         <i class="fas fa-paper-plane ml-2"></i>
